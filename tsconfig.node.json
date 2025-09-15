@@ -21,8 +21,18 @@
     /* Module & Interop */
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "customConditions": ["dev"],
+    "sourceMap": true,
+
+    /* Paths */
+    "paths": {
+      "#utils": ["./src/utils/index.ts"],
+      "#robot": ["./src/robot/index.ts"]
+    }
   },
-  "include": ["src", "tests", "vitest.config.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["./src", "./tests"],
+  "exclude": ["node_modules", "dist", "vitest.config.ts"]
 }
