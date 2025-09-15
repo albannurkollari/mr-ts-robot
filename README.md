@@ -17,5 +17,5 @@ The project’s primary purpose is to demonstrate:
 pnpm install
 
 # Run tests
-npm test
+pnpm test
 ```

@@ -38,5 +38,23 @@
     "email": "albannurkollari@gmail.com"
   },
   "packageManager": "pnpm@9.12.0",
-  "scripts": {}
+  "scripts": {
+    "biome": "biome",
+    "coverage": "vitest run --coverage",
+    "format": "biome format --staged --write",
+    "format:all": "biome format --write src/",
+    "lefthook": "lefthook install",
+    "lint": "biome lint --staged --write",
+    "lint:all": "biome lint --write src/",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.4",
+    "@types/node": "^24.4.0",
+    "lefthook": "^1.13.0",
+    "typescript": "^5.9.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
+  }
 }
