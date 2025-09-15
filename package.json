@@ -7,6 +7,16 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "imports": {
+    "#utils": {
+      "dev": "./src/utils/index.ts",
+      "default": "./dist/utils/index.js"
+    },
+    "#robot": {
+      "dev": "./src/robot/index.ts",
+      "default": "./dist/robot/index.js"
+    }
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -15,7 +25,7 @@
     }
   },
   "engines": {
-    "node": ">=23.6.0"
+    "node": ">=22.0.0"
   },
   "keywords": [
     "TypeScript",
@@ -37,22 +47,30 @@
     "name": "Alban Nurkollari",
     "email": "albannurkollari@gmail.com"
   },
-  "packageManager": "pnpm@9.12.0",
   "scripts": {
     "biome": "biome",
+    "build": "tsc",
+    "build:ci": "tsc --project tsconfig.ci.json",
+    "clean": "rimraf dist",
     "coverage": "vitest run --coverage",
+    "dev": "node scripts/start.js",
+    "dev:watch": "node --watch scripts/start.js",
+    "dev:debug": "node --inspect-brk scripts/start.js",
     "format": "biome format --staged --write",
     "format:all": "biome format --write src/",
     "lefthook": "lefthook install",
     "lint": "biome lint --staged --write",
     "lint:all": "biome lint --write src/",
+    "start": "node dist/index.js",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
     "@types/node": "^24.4.0",
     "lefthook": "^1.13.0",
+    "rimraf": "^6.0.1",
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"

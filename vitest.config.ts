@@ -4,7 +4,6 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
-    dir: "./tests",
     globals: true,
     environment: "node",
     coverage: {
@@ -12,8 +11,8 @@ export default defineConfig({
     },
     outputFile: {
       text: "tests/coverage/coverage.txt",
-      json: "tests/coverage/coverage-final.json",
-      html: "tests/coverage/index.html",
+      json: "tests/coverage/coverage.json",
+      html: "tests/coverage/coverage.html",
     },
   },
 });
