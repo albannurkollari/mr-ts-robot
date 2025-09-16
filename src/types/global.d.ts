@@ -89,9 +89,7 @@ type Nullify<T> = T extends object
   ? { [K in keyof T]: Nullify<T[K]> }
   : T | null;
 
-type OneOrTheOther<A extends string, B extends string, AVal, BVal = AVal> =
-  | ({ [K in A]?: AVal } & { [K in B]?: never })
-  | ({ [K in B]?: BVal } & { [K in A]?: never });
+type NoneOrAll<T extends object> = T | DisallowKeys<T, keyof T>;
 
 type Directions<T extends Lang = "English"> = T extends "English"
   ? "Left" | "Right"
@@ -103,7 +101,24 @@ type Instructions<T extends Lang = "English"> = Directions<T> | Movement<T>;
 type Command<T extends Lang = "English"> = Initial<Instructions<T>>;
 type EnglishCommand = Command<"English">; // "L" | "R" | "F"
 type SwedishCommand = Command<"Swedish">; // "V" | "H" | "G"
-type BothLangCommand = EnglishCommand | SwedishCommand;
-type InputKey<T extends Lang | "Both" = "Both"> = T extends Lang
-  ? Command<T>
-  : BothLangCommand;
+type InputKey<L extends Lang> = L extends "English"
+  ? EnglishCommand
+  : SwedishCommand;
+type Room = `${"square" | "circle"}_room`;
+type EnglishCompass = "N" | "E" | "S" | "W";
+type SwedishCompass = "N" | "Ö" | "S" | "V";
+type Compass<L extends Lang> = L extends "English"
+  ? EnglishCompass
+  : SwedishCompass;
+type Position<L extends Lang> = {
+  x: number;
+  y: number;
+  dir: Compass<L>;
+};
+type Environment<S extends number, L extends Lang> = {
+  lang: L;
+  outputLang?: L;
+  size: S;
+  type: Room;
+  yAxisInverted?: boolean;
+};
