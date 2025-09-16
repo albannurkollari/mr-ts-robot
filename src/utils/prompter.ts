@@ -1,5 +1,14 @@
-import { select } from "@inquirer/prompts";
-import { COMMAND_MAP } from "#constants";
+import { input, select } from "@inquirer/prompts";
+import {
+  BOTH_CMD,
+  BOTH_CMD_DESC,
+  COMMAND_MAP,
+  EN_CMD_DESC,
+  ENGLISH_CMD,
+  SV_CMD_DESC,
+  SWEDISH_CMD,
+} from "#constants";
+import { command } from "./predicates.ts";
 
 type LangChoices = Lang | "Both";
 type Choices<T> = Parameters<typeof select<T>>[0]["choices"];
@@ -33,4 +42,40 @@ export const whichLanguage = <O extends LangChoices>(
     default: selected,
     loop: true,
   });
+};
+
+export const moveMrTsRobot = (lang: LangChoices) => {
+  const isCommandInvalid = (value: string) => {
+    let predicate = command.isBoth;
+
+    if (lang === "English") {
+      predicate = command.isEnglish;
+    } else if (lang === "Swedish") {
+      predicate = command.isSwedish;
+    }
+
+    return [...value].some((char) => !predicate(char));
+  };
+
+  const validate = (value: string) => {
+    if (isCommandInvalid(value.trim())) {
+      return lang === "Both"
+        ? `${BOTH_CMD_DESC} only.`
+        : lang === "English"
+          ? `${EN_CMD_DESC} only.`
+          : `${SV_CMD_DESC} only.`;
+    }
+
+    return true;
+  };
+
+  const commands =
+    lang === "Both" ? BOTH_CMD : lang === "English" ? ENGLISH_CMD : SWEDISH_CMD;
+  const message =
+    `Insert command to move Mr TS Robot (use keys: ${commands}, then press Enter)` as const;
+
+  return input({ message, required: true, validate }).then((command) => ({
+    command,
+    lang,
+  }));
 };

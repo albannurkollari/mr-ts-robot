@@ -1,7 +1,12 @@
 // import { move } from "#robot";
-import { whichLanguage } from "#utils";
+import { ENGLISH, SWEDISH } from "#constants";
+import { moveMrTsRobot, whichLanguage } from "#utils";
 
-whichLanguage({ choices: ["English", "Swedish"] }).then((lang) => {
-  console.log("You picked:", lang);
-  console.log("Now type anything (Ctrl+C to exit):");
-});
+whichLanguage()
+  .then(moveMrTsRobot)
+  .then(({ command, lang }) => {
+    const selected = lang === "Both" ? `${ENGLISH} and ${SWEDISH}` : lang;
+
+    console.log("Selected:", selected);
+    console.log("Command:", command);
+  });

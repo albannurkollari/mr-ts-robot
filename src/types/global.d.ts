@@ -92,3 +92,18 @@ type Nullify<T> = T extends object
 type OneOrTheOther<A extends string, B extends string, AVal, BVal = AVal> =
   | ({ [K in A]?: AVal } & { [K in B]?: never })
   | ({ [K in B]?: BVal } & { [K in A]?: never });
+
+type Directions<T extends Lang = "English"> = T extends "English"
+  ? "Left" | "Right"
+  : "Vänster" | "Höger";
+type Movement<T extends Lang = "English"> = T extends "English"
+  ? "Forward"
+  : "Gå";
+type Instructions<T extends Lang = "English"> = Directions<T> | Movement<T>;
+type Command<T extends Lang = "English"> = Initial<Instructions<T>>;
+type EnglishCommand = Command<"English">; // "L" | "R" | "F"
+type SwedishCommand = Command<"Swedish">; // "V" | "H" | "G"
+type BothLangCommand = EnglishCommand | SwedishCommand;
+type InputKey<T extends Lang | "Both" = "Both"> = T extends Lang
+  ? Command<T>
+  : BothLangCommand;
