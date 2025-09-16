@@ -29,8 +29,9 @@
 
     /* Paths */
     "paths": {
-      "#utils": ["./src/utils/index.ts"],
-      "#robot": ["./src/robot/index.ts"]
+      "#constants": ["./src/constants/index.ts"],
+      "#robot": ["./src/robot/index.ts"],
+      "#utils": ["./src/utils/index.ts"]
     }
   },
   "include": ["./src", "./tests"],
