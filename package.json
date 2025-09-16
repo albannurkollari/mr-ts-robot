@@ -8,13 +8,17 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "imports": {
-    "#utils": {
-      "dev": "./src/utils/index.ts",
-      "default": "./dist/utils/index.js"
+    "#constants": {
+      "dev": "./src/constants/index.ts",
+      "default": "./dist/constants/index.js"
     },
     "#robot": {
       "dev": "./src/robot/index.ts",
       "default": "./dist/robot/index.js"
+    },
+    "#utils": {
+      "dev": "./src/utils/index.ts",
+      "default": "./dist/utils/index.js"
     }
   },
   "exports": {
@@ -68,6 +72,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
+    "@inquirer/prompts": "^7.8.6",
     "@types/node": "^24.4.0",
     "lefthook": "^1.13.0",
     "rimraf": "^6.0.1",

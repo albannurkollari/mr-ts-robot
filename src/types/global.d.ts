@@ -1,5 +1,7 @@
 // biome-ignore-all lint/suspicious/noExplicitAny: Any is allowed here.
-// biome-ignore-all lint/correctness/noUnusedVariables: It's an ambiient file.
+// biome-ignore-all lint/correctness/noUnusedVariables: It's an ambient file.
+
+type Lang = "English" | "Swedish";
 
 type Primitive<Nullable extends boolean = false> = Nullable extends true
   ? string | number | boolean | bigint | null | undefined
@@ -27,6 +29,12 @@ type Overwrite<T, U extends Partial<Record<keyof T, any>>> = Prettify<{
   [K in keyof T]: K extends keyof U ? U[K] : T[K];
 }>;
 
+type Initial<S extends string> = S extends `${infer F}${string}` ? F : never;
+
+type CombinationOf<T extends string> = T extends string
+  ? `${T}${CombinationOf<T>}` | T
+  : never;
+
 type ToCamelCase<
   S extends string,
   Delimiter extends string = "",
@@ -46,6 +54,15 @@ type CamelCaseObj<T, Delimiter = ""> = {
     Delimiter
   >]: NonNullable<T>[k];
 };
+
+// Require at least N elements
+type MinArrayOf<
+  T,
+  N extends number,
+  Acc extends T[] = [],
+> = Acc["length"] extends N
+  ? [...Acc, ...T[]] // once Acc has N, allow more
+  : MinArrayOf<T, N, [...Acc, T]>; // keep building Acc
 
 type NonEmptyArray<T> = [T, ...T[]];
 
