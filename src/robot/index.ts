@@ -2,6 +2,9 @@ import pc from "picocolors";
 import { COMPASS, COMPASS_TRANSLATION, DELTAS } from "#constants";
 import { cycleArrayItem, validateBounds } from "#utils";
 
+// TODO: Move to types or POJO when enforcing Node v24+
+// The latest version has TS native support but lacks
+// support for Enums (without compiling to JS).
 enum Direction {
   Left = -1,
   Forward = 0,
