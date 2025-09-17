@@ -1,6 +1,7 @@
 # mr-ts-robot
 
-![Tests](https://github.com/albannurkollari/mr-ts-robot/actions/workflows/tests.yml/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/albannurkollari/mr-ts-robot/badge.svg?branch=main)](https://coveralls.io/github/albannurkollari/mr-ts-robot?branch=main)
+![Tests](https://github.com/albannurkollari/mr-ts-robot/actions/workflows/tests.yml/badge.svg)
+[![Coverage](https://img.shields.io/codecov/c/github/albannurkollari/mr-ts-robot?branch=main)](https://app.codecov.io/gh/albannurkollari/mr-ts-robot)
 
 A `TypeScript` application that simulates a robot navigating in a two-dimensional space.  
 It interprets movement commands in `Swedish` or `English`, tracks the robot’s position and direction,  
