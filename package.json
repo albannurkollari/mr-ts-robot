@@ -65,7 +65,8 @@
     "lefthook": "lefthook install",
     "lint": "biome lint --staged --write",
     "lint:all": "biome lint --write src/",
-    "start": "node dist/index.js",
+    "start": "pnpm clean && tsc && node dist/index.js",
+    "start:debug": "pnpm clean && tsc && node --inspect-brk dist/index.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
@@ -79,5 +80,8 @@
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1"
   }
 }
