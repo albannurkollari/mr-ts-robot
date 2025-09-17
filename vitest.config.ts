@@ -8,7 +8,7 @@ export default defineConfig({
     environment: "node",
     coverage: {
       all: false,
-      reporter: ["text", "json", "html"],
+      reporter: ["text", "json", "html", "lcov"],
       exclude: ["scripts/**"],
       reportsDirectory: "coverage",
     },
