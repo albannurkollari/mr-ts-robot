@@ -7,12 +7,15 @@ export default defineConfig({
     globals: true,
     environment: "node",
     coverage: {
+      all: false,
       reporter: ["text", "json", "html"],
+      exclude: ["scripts/**"],
+      reportsDirectory: "coverage",
     },
-    outputFile: {
-      text: "tests/coverage/coverage.txt",
-      json: "tests/coverage/coverage.json",
-      html: "tests/coverage/coverage.html",
-    },
+    reporters: [
+      "default",
+      ["junit", { outputFile: "coverage/junit.xml" }],
+      ["json", { outputFile: "coverage/test-results.json" }],
+    ],
   },
 });

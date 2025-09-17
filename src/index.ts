@@ -12,6 +12,7 @@ const lang = await whichLanguage();
 const environment = await setupEnvironment(lang);
 const startingPosition = await setStartingPosition(environment);
 const command = await getMoveCommand(lang, environment.type);
+const outputLang = environment.outputLang ?? lang;
 
 log("\n", pc.bgWhite(pc.white(`${pc.black(pc.bold("Selection: "))}`)), "\n");
 log(pc.green(`Environment: ${pc.bold(JSON.stringify(environment, null, 2))}`));
@@ -22,7 +23,7 @@ log(
 );
 log(pc.green(`Command: ${pc.bold(command)}`), "\n");
 
-if (lang === "English") {
+if (outputLang === "English") {
   const { x, y, dir } = startingPosition;
   const value = `${x} ${y} ${dir}`;
 
