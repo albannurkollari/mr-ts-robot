@@ -15,14 +15,3 @@ jobs:
 
       - name: Run tests (with vitest)
         run: pnpm test
-
-  coverage:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-
-      - uses: ./.github/actions/setup
-
-      - name: Run coverage
-        run: pnpm coverage
