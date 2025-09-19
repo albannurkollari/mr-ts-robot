@@ -51,8 +51,8 @@ export function move<S extends number, L extends Lang>(
   const outputLangCode =
     (environment.outputLang ?? lang) === "English" ? "en" : "sv";
   const deltas = yAxisInverted
-    ? DELTAS[langCode].cartesian
-    : DELTAS[langCode].matrix;
+    ? DELTAS[langCode].cartesianFlipped
+    : DELTAS[langCode].cartesianNormal;
   const { value, label } =
     lang === "English"
       ? movementEn[key as EnglishCommand]
@@ -144,7 +144,7 @@ export function moveInSeries({
 
   for (let i = 0; i < command.length; i++) {
     const key = command[i] as EnglishCommand | SwedishCommand;
-    const currentPosition = coords[i];
+    const currentPosition = coords[i] as Position<Lang>;
     const position = move(environment, key, currentPosition);
 
     coords.push(position);

@@ -15,5 +15,5 @@ export function cycleArrayItem<T>(
 ): T {
   const newIndex = cycleNumber(currentIndex, { max: array.length, step });
 
-  return array[newIndex];
+  return array[newIndex] as T;
 }
