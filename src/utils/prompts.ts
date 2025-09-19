@@ -85,7 +85,7 @@ export const setupEnvironment = async (lang: Lang = "Swedish") => {
     lang,
     size: 5,
     type: "square_room",
-    yAxisInverted: false,
+    yAxisInverted: true,
   };
 
   const shouldAdjustEnvironment = await select<boolean>({
@@ -129,6 +129,7 @@ export const setupEnvironment = async (lang: Lang = "Swedish") => {
 
   const yAxisInverted = await select<boolean>({
     message: getOptionalMsg("Is Y axis inverted?"),
+    default: true,
     choices: [
       {
         name: "No",
@@ -168,7 +169,7 @@ export const setStartingPosition = async ({
     prefill: "editable",
     required: true,
     validate: (value) => {
-      const [x, y] = value.split(" ").map(Number);
+      const [x, y] = value.split(" ").map(Number) as [number, number];
 
       if (!validateBounds(type, size, x, y)) {
         const boundaries =

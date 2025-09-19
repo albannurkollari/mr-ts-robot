@@ -1,32 +1,34 @@
-// If origo (0,0) is bottom-left, use Cartesian coordinates
-// If origo (0,0) is top-left, use Matrix coordinates
+// Two axis conventions:
+// - cartesianNormal: Y+ is upward (math-style Cartesian)
+// - cartesianFlipped: Y+ is downward (grid/screen-style)
+// Default should be cartesianFlipped, since assignment examples assume that.
 export const DELTAS = {
   en: {
-    cartesian: {
+    cartesianNormal: {
       N: [0, 1], // up
       E: [1, 0], // right
       S: [0, -1], // down
       W: [-1, 0], // left
     },
-    matrix: {
+    cartesianFlipped: {
       N: [0, -1], // up = decreasing y
-      E: [1, 0],
+      E: [1, 0], // right
       S: [0, 1], // down = increasing y
-      W: [-1, 0],
+      W: [-1, 0], // left
     },
   },
   sv: {
-    cartesian: {
-      N: [0, 1], // up
-      Ö: [1, 0], // right
-      S: [0, -1], // down
-      V: [-1, 0], // left
+    cartesianNormal: {
+      N: [0, 1], // upp
+      Ö: [1, 0], // höger
+      S: [0, -1], // ner
+      V: [-1, 0], // vänster
     },
-    matrix: {
-      N: [0, -1], // up = decreasing y
-      Ö: [1, 0],
-      S: [0, 1], // down = increasing y
-      V: [-1, 0],
+    cartesianFlipped: {
+      N: [0, -1], // upp = minskar y
+      Ö: [1, 0], // höger
+      S: [0, 1], // ner = ökar y
+      V: [-1, 0], // vänster
     },
   },
 } as const;

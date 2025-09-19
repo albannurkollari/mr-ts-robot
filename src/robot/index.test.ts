@@ -25,7 +25,7 @@ describe("moveInSeries", () => {
         lang: "Swedish",
         size: 5,
         type: "square_room",
-        yAxisInverted: false,
+        yAxisInverted: true,
       };
       const startingPosition = makePositionFromString<"Swedish">(
         startPositions[0],
@@ -52,7 +52,7 @@ describe("moveInSeries", () => {
         outputLang: "Swedish",
         size: 10,
         type: "circle_room",
-        yAxisInverted: false,
+        yAxisInverted: true,
       };
       const startingPosition = makePositionFromString<"English">(
         startPositions[1],
